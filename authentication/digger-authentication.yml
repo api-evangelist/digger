@@ -1,0 +1,63 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.opencomputer.dev/agent-sessions/authentication
+docs: https://docs.opencomputer.dev/agent-sessions/authentication
+description: >-
+  Authentication profile for Digger's products. OpenComputer's REST API is
+  API-key based with three credential types for durable agent sessions; the
+  self-hostable OpenTaco (Digger CE) backend authenticates operators via WorkOS
+  OIDC and integrates with source control via a GitHub App.
+summary:
+  types: [apiKey, http, oauth2]
+  api_key_in: [header, query]
+  oauth2_flows: [authorizationCode]
+schemes:
+- name: OrgApiKey
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  product: OpenComputer
+  scope: full-account (management calls — create agents/sessions, register webhooks, manage credentials)
+  notes: >-
+    Server-side only. The v3 sessions surface also accepts the same key as an
+    HTTP Bearer token (Authorization: Bearer $OPENCOMPUTER_API_KEY).
+  source: https://docs.opencomputer.dev/api-reference/overview
+- name: BearerToken
+  type: http
+  scheme: bearer
+  product: OpenComputer (api.opencomputer.dev/v3)
+  notes: Org API key presented as Bearer on the v3 sessions API.
+  source: https://docs.opencomputer.dev/agent-sessions/authentication
+- name: ClientToken
+  type: http
+  scheme: bearer
+  product: OpenComputer
+  token_scopes: [read, steer]
+  lifetime: short-lived, session-scoped (ttlSeconds, e.g. 3600)
+  browser_safe: true
+  minted_via: POST /v3/sessions or POST /v3/sessions/{id}/client-tokens
+  notes: >-
+    Session-scoped token safe to hand to a front-end. Can stream and steer ONE
+    session and nothing else. Never ship the org API key to a browser.
+  source: https://docs.opencomputer.dev/agent-sessions/authentication
+- name: WebSocketQueryKey
+  type: apiKey
+  in: query
+  parameter: api_key
+  product: OpenComputer
+  notes: WebSocket exec endpoints accept the API key via query parameter.
+  source: https://docs.opencomputer.dev/api-reference/overview
+- name: WorkOS-OIDC
+  type: openIdConnect
+  product: OpenTaco (Digger CE self-host backend)
+  notes: Operator sign-in for the self-hosted OpenTaco dashboard is configured via WorkOS.
+  source: https://docs.opentaco.dev/self-hosting/workos-setup
+- name: GitHubApp
+  type: oauth2
+  flow: authorizationCode
+  product: OpenTaco (Digger CE)
+  notes: PR automation and source-control integration run through an installed GitHub App.
+  source: https://docs.opentaco.dev/onboarding/github-app-setup
+byo_credentials:
+  bring_your_own_model_keys: true
+  notes: OpenComputer agent sessions support bring-your-own model provider keys.
