@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.opencomputer.dev/api-reference/overview
+docs: https://docs.opencomputer.dev/api-reference/overview
+format: json-error-envelope
+description: >-
+  OpenComputer's REST API returns a consistent JSON error envelope with a single
+  `error` string field (NOT RFC 9457 problem+json). Failures are distinguished
+  by HTTP status code; the documented status table is captured below.
+envelope:
+  field: error
+  example: '{ "error": "descriptive error message" }'
+problems:
+- status: 400
+  title: Invalid request
+  meaning: Missing fields or bad values.
+- status: 401
+  title: Unauthorized
+  meaning: Missing or invalid authentication.
+- status: 403
+  title: Forbidden
+  meaning: Insufficient permissions.
+- status: 404
+  title: Not found
+  meaning: Resource not found.
+- status: 409
+  title: Conflict
+  meaning: Duplicate resource.
+- status: 429
+  title: Quota exceeded
+  meaning: Rate/quota limit hit.
+- status: 500
+  title: Internal server error
+  meaning: Unexpected server-side failure.
+- status: 503
+  title: Service unavailable
+  meaning: Feature unavailable in current deployment mode (e.g. self-host).

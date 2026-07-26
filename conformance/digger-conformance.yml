@@ -1,0 +1,33 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.opentaco.dev/ce/features/fips-140
+description: >-
+  Cross-cutting standards conformance for Digger's products, from published docs
+  and the observed API/auth/webhook surfaces. OpenTaco (Digger CE) documents a
+  FIPS 140 build; OpenComputer signs webhooks with svix and authenticates with
+  API keys / session-scoped client tokens; the self-host backend authenticates
+  operators via WorkOS OIDC + a GitHub App.
+standards:
+- id: fips-140
+  conforms: true
+  evidence: OpenTaco CE documents a FIPS 140 standard feature/build
+  source: https://docs.opentaco.dev/ce/features/fips-140
+- id: oidc
+  conforms: true
+  evidence: OpenTaco self-host operator sign-in configured via WorkOS OIDC
+  source: https://docs.opentaco.dev/self-hosting/workos-setup
+- id: oauth2
+  conforms: true
+  evidence: OpenTaco GitHub App uses OAuth2 authorization-code for source-control integration
+  source: https://docs.opentaco.dev/onboarding/github-app-setup
+- id: webhook-signing-svix
+  conforms: true
+  evidence: OpenComputer webhook deliveries are signed with svix (whsec_ secret, svix-id/svix-signature)
+  source: https://docs.opencomputer.dev/sandboxes/webhooks
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: 'OpenComputer uses a simple { error: message } envelope, not application/problem+json'
+- id: opa-rego
+  conforms: true
+  evidence: OpenTaco (Digger) supports RBAC / policy via Open Policy Agent
+  source: https://docs.opentaco.dev/ce/state-management/rbac

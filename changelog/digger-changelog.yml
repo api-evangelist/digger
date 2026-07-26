@@ -1,0 +1,42 @@
+generated: '2026-07-18'
+method: searched
+source: https://github.com/diggerhq/opencomputer/releases
+description: >-
+  Digger publishes dated, tagged releases on GitHub for both product lines:
+  OpenComputer's `oc` control plane/CLI (diggerhq/opencomputer) and the
+  Digger/OpenTaco IaC orchestrator (diggerhq/digger). GitHub Releases is the
+  source of truth; the recent window is captured below.
+scheme: git-tagged releases (semver-style)
+sources:
+- product: OpenComputer
+  releases: https://github.com/diggerhq/opencomputer/releases
+- product: Digger / OpenTaco
+  releases: https://github.com/diggerhq/digger/releases
+entries:
+- product: OpenComputer
+  version: v0.6.0.15
+  name: oc v0.6.0.15
+  date: '2026-07-18'
+  latest: true
+- product: OpenComputer
+  version: v0.6.0.14
+  name: oc v0.6.0.14
+  date: '2026-07-17'
+- product: OpenComputer
+  version: v0.6.0.13
+  name: oc v0.6.0.13
+  date: '2026-07-17'
+- product: OpenComputer
+  version: v0.6.0.11
+  name: oc v0.6.0.11
+  date: '2026-07-15'
+- product: Digger / OpenTaco
+  version: v0.6.147
+  date: '2026-06-28'
+- product: Digger / OpenTaco
+  version: v0.6.146
+  date: '2026-06-04'
+- product: Digger / OpenTaco
+  version: backend-ee/v0.1.7.32
+  name: Digger Backend EE v0.1.7.32
+  date: '2026-05-04'

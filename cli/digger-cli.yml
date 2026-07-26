@@ -1,0 +1,46 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.opencomputer.dev/reference/cli/overview
+description: >-
+  Digger ships two first-party CLIs: `oc` (OpenComputer sandbox control plane)
+  and `digger` (the IaC / OpenTaco orchestration tool that runs Terraform /
+  OpenTofu inside CI).
+clis:
+- name: oc
+  product: OpenComputer
+  docs: https://docs.opencomputer.dev/reference/cli/overview
+  platforms: [macOS, Linux]
+  install: GitHub releases (github.com/diggerhq/opencomputer/releases)
+  auth:
+    flag: --api-key
+    env: OPENCOMPUTER_API_KEY
+    config: oc config set api-key YOUR_API_KEY
+  global_flags:
+  - '--api-key: API key for authentication (env OPENCOMPUTER_API_KEY)'
+  - '--api-url: control-plane URL (env OPENCOMPUTER_API_URL)'
+  - '--json: output as JSON'
+  commands:
+  - name: sandbox
+    description: Manage sandbox lifecycle
+  - name: exec
+    description: Execute commands inside a sandbox
+  - name: shell
+    description: Interactive terminal access
+  - name: checkpoint
+    description: Manage sandbox checkpoints
+  - name: patch
+    description: Manage checkpoint patches
+  - name: preview
+    description: Manage preview URLs
+  - name: config
+    description: CLI configuration
+- name: digger
+  product: OpenTaco (Digger CE) IaC orchestration
+  docs: https://docs.opentaco.dev/
+  language: Go
+  install: GitHub Action + release binary (github.com/diggerhq/digger)
+  config_file: digger.yml
+  description: >-
+    Runs inside your CI to orchestrate Terraform/OpenTofu plan & apply, drives
+    PR automation and CommentOps, holds PR-level locks, and supports drift
+    detection and OPA-based RBAC.

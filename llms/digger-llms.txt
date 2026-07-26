@@ -1,0 +1,74 @@
+# OpenComputer
+
+> Persistent cloud VMs for AI agents. Beyond sandboxes.
+
+OpenComputer provides long-running cloud infrastructure for AI agents. Every OpenComputer is a real machine with a full filesystem, full OS access, and persistent state. It stays always on, and you can resize memory and CPU at runtime or hibernate and wake it up at any point.
+
+## What it is
+
+OpenComputer is purpose-built for B2B agent platforms. If you're building the next Lovable, Devin, or Bolt, your users need a computer that remembers what it installed yesterday, keeps files between sessions, and picks up where it left off.
+
+Ephemeral sandboxes are stateless - every session starts from scratch. OpenComputer VMs are stateful and always on - state survives across sessions without snapshot/restore pipelines. Resize at runtime or hibernate when not needed.
+
+## Features
+
+- Persistent VMs: Always on with elastic resizing. Scale memory and CPU at runtime, or hibernate and wake when needed.
+- Checkpoints: Instant snapshots. Fork or restore to any point.
+- Preview URLs: Expose ports externally with auth (Clerk) and custom domains.
+- Per-tenant package control: Manage and hot-swap software versions inside running VMs.
+
+## Quick start
+
+Install the SDK:
+
+    npm install @opencomputer/sdk
+    # or
+    pip install opencomputer-sdk
+
+Usage:
+
+    import { Sandbox } from '@opencomputer/sdk';
+
+    const sandbox = await Sandbox.create({ template: 'default' });
+    const result = await sandbox.commands.run('node --version');
+    console.log(result.stdout);
+
+    await sandbox.files.write('/app/index.js', 'console.log("hello")');
+    const output = await sandbox.commands.run('node /app/index.js');
+    console.log(output.stdout); // hello
+
+    await sandbox.kill();
+
+## Pricing
+
+- Free: shared upto 2vCPU, shared upto 2GB memory, 3GB disk, 5 concurrency
+- Medium ($300/mo): 8 CPU, 16GB memory, 50GB disk (addable), 50 concurrency
+- Large ($3,000/mo): 64 CPU, 512GB memory, 3800GB disk, 500 concurrency
+- Custom: talk to us
+
+Users can add one or more machines to their pool at any time.
+
+## Blog
+
+Long-form writing on agent infrastructure, sandbox isolation, and patterns for building on long-lived compute.
+
+- [Build an Ava-Inspired BDR Agent That Runs on Its Own Computer](https://opencomputer.dev/blog/open-ava-bdr-agent.md): Utpal Nadiger, 2026-06-27. A cookbook for building Open Ava: an inspectable BDR agent on a persistent OpenComputer VM. SQLite as the CRM, AgentMail as the inbox, Anthropic for research and drafting, with an approval gate and a checkpoint before any irreversible send. (Full-text markdown; HTML at /blog/open-ava-bdr-agent)
+- [Scaling OpenComputer from one VM to a million sandboxes](https://opencomputer.dev/blog/scaling-one-vm-to-million-sandboxes.md): Mohamed Habib, 2026-06-17. From one VM to a million sandboxes: the architecture redesign behind OpenComputer's scaling — cells, edge routing on Cloudflare Workers, and per-second billing from 10-second heartbeats. (Full-text markdown; HTML at /blog/scaling-one-vm-to-million-sandboxes)
+- [Build a background coding agent that works while you sleep](https://opencomputer.dev/blog/background-coding-agent.md): Utpal Nadiger, 2026-06-01. A 250-line self-hosted background coding agent. Label a GitHub issue with `agent`, wake up to a draft PR. ~$0.30/task. The snapshot, the agent loop, the webhook server, and the dead ends to skip. (Full-text markdown; HTML at /blog/background-coding-agent)
+- [What it takes to run an AI coworker on iMessage](https://opencomputer.dev/blog/what-it-takes-to-run-an-ai-coworker-on-imessage): Mohamed Habib, 2026-05-22. Lessons from shipping Clawputer, a managed openclaw that lives in your iMessage. Patterns for VM lifecycle, versioning, OAuth integrations, and browser offloading when building AI coworkers on long-lived compute.
+- [Stop Treating Agent Sandboxes as Cattle](https://opencomputer.dev/blog/stop-treating-sandboxes-as-cattle): Utpal Nadiger, 2026-05-04. A direct response to "The agent harness belongs outside the sandbox." Why credentials, hibernation, elasticity, and checkpoints make a persistent in-sandbox harness the better default.
+- [The Race to Build the Next WordPress](https://opencomputer.dev/blog/the-race-to-build-the-next-wordpress): Igor Zalutski, 2026-04-19. Agent harnesses are to this era what WordPress was to the early 2000s internet. The race to build the next one is already on.
+- [What "elastic compute" means in 2026](https://opencomputer.dev/blog/what-elastic-compute-means): Igor Zalutski, 2026-04-07. From EC2 to agent sandboxes — how agents broke the compute paradigms we've relied on for 20 years, and what elasticity looks like now.
+- [Where Should the Agent(s) Live?](https://opencomputer.dev/blog/where-should-the-agent-live): Utpal Nadiger, Mohamed Habib, Igor Zalutski, 2026-03-20. Isolation models, agent placement tradeoffs, credential design, and sandbox lifecycle patterns for agentic systems.
+- [Agent Execution Is the New HTTP Request](https://opencomputer.dev/blog/agent-execution-new-http-request): Igor Zalutski, 2026-03-17. From CGI scripts to serverless, web infrastructure evolved over 30 years. Now agents are taking us full circle — back to files and scripts.
+- [I Asked Opus 4.6 to Fingerprint Sandbox Vendors](https://opencomputer.dev/blog/sandbox-fingerprinting): Mohamed Habib, 2026-03-17. Fingerprinted 6 sandbox providers to understand their isolation models — from containers to microVMs to full hypervisors. Here's what we found.
+- [The Agentic Workload](https://opencomputer.dev/blog/the-agentic-workload): Igor Zalutski, 2026-03-15. Agent code doesn't fit neatly into existing categories. It's not a traditional app, and it's not a CI job. It's something new.
+- [Building an Open Lovable — part 1](https://opencomputer.dev/blog/building-open-lovable-part-1): Mohamed Habib, 2026-03-11. A series to build a Lovable clone to learn how Lovable works under the hood using Claude Agent SDK and OpenComputer.
+
+## Links
+
+- Website: https://opencomputer.dev
+- Docs: https://docs.opencomputer.dev
+- Dashboard: https://app.opencomputer.dev
+- GitHub: https://github.com/diggerhq/opencomputer
+- Docs llms.txt: https://docs.opencomputer.dev/llms.txt

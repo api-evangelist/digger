@@ -1,0 +1,47 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.opencomputer.dev/api-reference/overview
+docs: https://docs.opencomputer.dev/api-reference/overview
+description: >-
+  Cross-cutting request/response semantics for the OpenComputer REST API,
+  captured from the published API reference, authentication, and webhooks docs.
+authentication:
+  style: api-key
+  header: X-API-Key
+  bearer_alt: Authorization Bearer (v3 sessions surface)
+  websocket: api_key query parameter
+  client_tokens: session-scoped read/steer tokens for browser use
+  detail: authentication/digger-authentication.yml
+base_urls:
+- https://app.opencomputer.dev/api
+- https://api.opencomputer.dev/v3
+versioning:
+  style: uri-path
+  observed: /api (management), /v3 (durable agent sessions)
+error_envelope:
+  shape: '{ "error": "message" }'
+  discriminator: HTTP status code
+  detail: errors/digger-problem-types.yml
+identifiers:
+  prefixed: true
+  examples:
+    sandbox: 'sb-...'
+    agent: 'agt_...'
+    session: 'ses_...'
+webhooks:
+  signing: svix (whsec_ secret; svix-id / svix-signature headers)
+  dedupe_on: deliveryId (set from svix-id, stable across retries + redelivery)
+  delivery: signed, retried, redeliverable
+  envelope_case: camelCase
+  custom_routing: metadata attached at registration rides as custom HTTP headers
+  detail: asyncapi/digger-opencomputer-webhooks.yml
+idempotency:
+  documented: false
+  notes: >-
+    No idempotency-key header or idempotency contract is documented in the
+    public API reference as of this capture; not asserted.
+pagination:
+  documented: false
+  notes: Not documented in the captured API-reference overview.
+rate_limiting:
+  signal: HTTP 429 "Quota exceeded" on quota/limit breaches

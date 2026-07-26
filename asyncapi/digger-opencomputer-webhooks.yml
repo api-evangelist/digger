@@ -1,0 +1,64 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.opencomputer.dev/sandboxes/webhooks
+docs: https://docs.opencomputer.dev/sandboxes/webhooks
+spec_type: Webhooks
+status: preview
+description: >-
+  OpenComputer webhook catalog. Register a destination and OpenComputer delivers
+  a sandbox's lifecycle events as a small, signed delivery envelope — signed
+  (svix), retried, and redeliverable. Subscribe to all events or filter with
+  eventTypes (exact like `sandbox.stopped` or a prefix like `sandbox.*`).
+registration:
+  endpoint: POST https://app.opencomputer.dev/api/webhooks
+  auth_header: X-API-Key
+  sdk: 'new Webhooks({ apiKey }).create({ url, eventTypes, name })'
+  destination_scope: org-scoped by default, or pinned to one sandbox via sandboxId
+  pause: set enabled=false (deliveries stop; missed events are NOT backfilled)
+signing:
+  provider: svix
+  secret_prefix: whsec_
+  secret_fetch: GET /api/webhooks/:id/secret
+  secret_rotate: 'webhooks.update(id, { rotateSecret: true })'
+  dedupe_on: deliveryId (from svix-id header; stable across retries + redelivery)
+envelope:
+  case: camelCase
+  top_level: [type, sandboxId, eventId, event]
+  example: |
+    {
+      "type": "sandbox.stopped",
+      "sandboxId": "sb-3f9a…",
+      "eventId": "sb-3f9a…:3:142",
+      "event": {
+        "id": "sb-3f9a…:3:142", "ts": "2026-06-24T12:00:00Z",
+        "orgId": "…", "sandboxId": "sb-3f9a…",
+        "type": "sandbox.stopped", "data": { "reason": "user_requested" }
+      }
+    }
+events:
+- type: sandbox.created
+  when: the sandbox resource is accepted
+  data: template
+- type: sandbox.ready
+  when: the VM has booted and can run commands
+- type: sandbox.hibernated
+  when: the sandbox was paused (disk persisted)
+- type: sandbox.resumed
+  when: a hibernated sandbox woke
+- type: sandbox.stopped
+  when: the sandbox stopped
+  data: 'reason: user_requested | expired | crash'
+- type: sandbox.migrated
+  when: the sandbox moved to new infrastructure
+- type: sandbox.checkpoint.created
+  when: a checkpoint was taken
+  data: checkpointId
+- type: sandbox.forked
+  when: a sandbox was forked from a checkpoint
+  data: parentId
+- type: sandbox.scaled
+  when: the sandbox's resources changed
+  data: [cpuCount, memoryMB]
+- type: sandbox.preview_url.changed
+  when: a preview-URL port mapping was added or removed
+  data: [port, url]

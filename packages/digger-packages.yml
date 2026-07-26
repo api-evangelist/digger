@@ -1,0 +1,62 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  npm (registry.npmjs.org), PyPI, pkg.go.dev, and the diggerhq GitHub org
+  releases; first-party libraries for OpenComputer and the Digger/OpenTaco IaC
+  orchestrator.
+packages:
+- language: javascript
+  registry: npm
+  name: "@opencomputer/sdk"
+  url: https://www.npmjs.com/package/@opencomputer/sdk
+  install: npm install @opencomputer/sdk
+  repository: https://github.com/diggerhq/opencomputer/tree/main/sdks/typescript
+  license: MIT
+  description: TypeScript SDK for OpenComputer — the cloud sandbox / persistent-VM platform.
+  official: true
+- language: python
+  registry: pypi
+  name: opencomputer-sdk
+  url: https://pypi.org/project/opencomputer-sdk/
+  install: pip install opencomputer-sdk
+  repository: https://github.com/diggerhq/opencomputer
+  description: Python SDK for OpenComputer — the cloud sandbox / persistent-VM platform.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@opencomputer/agents-sdk"
+  url: https://www.npmjs.com/package/@opencomputer/agents-sdk
+  install: npm install @opencomputer/agents-sdk
+  description: Official TypeScript SDK for OpenComputer Agents — run AI agents programmatically.
+  official: true
+- language: javascript
+  registry: npm
+  name: "@opencomputer/flue"
+  url: https://www.npmjs.com/package/@opencomputer/flue
+  install: npm install @opencomputer/flue
+  repository: https://github.com/diggerhq/opencomputer/tree/main/sdks/flue
+  description: Run a Flue app as an OpenComputer agent with managed models, repository tools, and demand-driven sandboxes.
+  official: true
+- language: go
+  registry: pkg.go.dev
+  name: github.com/diggerhq/digger
+  url: https://pkg.go.dev/github.com/diggerhq/digger
+  install: go install github.com/diggerhq/digger@latest
+  repository: https://github.com/diggerhq/digger
+  license: MIT
+  description: Digger / OpenTaco IaC orchestration CLI and backend (Go). Runs Terraform/OpenTofu inside existing CI pipelines.
+  official: true
+binaries:
+- name: oc
+  description: OpenComputer CLI (macOS, Linux) — manage sandboxes, exec, checkpoints, preview URLs.
+  source: https://github.com/diggerhq/opencomputer/releases
+  install_env: OPENCOMPUTER_API_KEY
+  official: true
+- name: digger
+  description: Digger / OpenTaco IaC orchestration CLI, distributed as a GitHub Action and release binary.
+  source: https://github.com/diggerhq/digger/releases
+  github_action: https://github.com/marketplace/actions/digger
+  official: true
+notes: >-
+  The PyPI package literally named `digger` is a third-party project (author
+  "Lee", github.com/Dog-Egg/digger) and is NOT first-party — excluded.

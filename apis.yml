@@ -1,8 +1,18 @@
 aid: digger
 name: Digger
-description: 'Digger is a company surfaced as a portfolio company of initialized-capital and added to
-  the API Evangelist network as a stub for enrichment. Sector: enterprise-saas. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: >-
+  Digger (diggerhq), backed by Initialized Capital, builds developer
+  infrastructure across two open-source-rooted product lines. OpenTaco (formerly
+  the Digger CE project) is an Infrastructure-as-Code orchestration and
+  Terraform/OpenTofu state-management platform that runs plan/apply inside your
+  existing CI pipeline, with PR automation, PR-level locks, drift detection and
+  remediation, RBAC via Open Policy Agent, and FIPS 140 support; it is
+  self-hostable via Docker Compose, Railway, and Kubernetes. OpenComputer is
+  the company's flagship agent-infrastructure product: persistent, long-running
+  cloud VMs for AI agents — real Linux machines that hibernate when idle and
+  wake in seconds, with checkpoints, preview URLs, per-tenant package control,
+  a REST API, TypeScript and Python SDKs, the oc CLI, durable agent sessions,
+  and signed, retriable webhooks for sandbox lifecycle events.
 url: https://raw.githubusercontent.com/api-evangelist/digger/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,13 +20,59 @@ x-backed-by:
 - initialized-capital
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://opencomputer.dev/social-preview.png
 tags:
 - Company
-- Enterprise Saas
-apis: []
+- AI Agents
+- Cloud Sandbox
+- Compute
+- Infrastructure as Code
+- Terraform
+- OpenTofu
+- Developer Tools
+- Webhooks
+- Open Source
+- SDKs
+- CLI
+apis:
+- name: OpenComputer API
+  description: >-
+    REST API for OpenComputer — create and manage persistent cloud sandbox VMs,
+    run commands and files inside them, checkpoint/fork, expose preview URLs,
+    run durable agent sessions, and register signed webhooks for sandbox
+    lifecycle events. Management calls authenticate with an org API key via the
+    X-API-Key header (Bearer on the v3 sessions surface); short-lived,
+    session-scoped client tokens (read/steer) are safe for browsers.
+  humanURL: https://docs.opencomputer.dev/
+  baseURL: https://app.opencomputer.dev/api
+  tags:
+  - AI Agents
+  - Cloud Sandbox
+  - Compute
+  properties:
+  - type: Documentation
+    url: https://docs.opencomputer.dev/
+  - type: APIReference
+    url: https://docs.opencomputer.dev/api-reference/overview
+  - type: Authentication
+    url: authentication/digger-authentication.yml
+  - type: Webhooks
+    url: asyncapi/digger-opencomputer-webhooks.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -25,3 +81,48 @@ maintainers:
 common:
 - type: Website
   url: https://digger.dev/
+- type: Documentation
+  url: https://docs.opencomputer.dev/
+- type: APIReference
+  url: https://docs.opencomputer.dev/api-reference/overview
+- type: GettingStarted
+  url: https://docs.opentaco.dev/onboarding/account-setup
+- type: Blog
+  url: https://opencomputer.dev/blog
+- type: Pricing
+  url: https://opencomputer.dev/#pricing
+- type: SignUp
+  url: https://app.opencomputer.dev/
+- type: Support
+  url: https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q
+- type: GitHubOrganization
+  url: https://github.com/diggerhq
+- type: Authentication
+  url: authentication/digger-authentication.yml
+- type: Packages
+  url: packages/digger-packages.yml
+- type: SDKs
+  url: packages/digger-packages.yml
+- type: CLI
+  url: cli/digger-cli.yml
+- type: LLMsTxt
+  url: llms/digger-llms.txt
+- type: Conventions
+  url: conventions/digger-conventions.yml
+- type: ErrorCatalog
+  url: errors/digger-problem-types.yml
+- type: Webhooks
+  url: asyncapi/digger-opencomputer-webhooks.yml
+- type: ChangeLog
+  url: changelog/digger-changelog.yml
+- type: Conformance
+  url: conformance/digger-conformance.yml
+- type: Compliance
+  url: https://docs.opentaco.dev/ce/features/fips-140
+- type: DomainSecurity
+  url: security/digger-domain-security.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
