@@ -47,6 +47,10 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-18'
 image: https://opencomputer.dev/social-preview.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-25
+x-docs-hosting: vercel
 tags:
 - Company
 - AI Agents
@@ -57,7 +61,7 @@ tags:
 - OpenTofu
 - Developer Tools
 - Webhook
-- Open-Source
+- Open Source
 - SDK
 - CLI
 tags_raw:
@@ -73,6 +77,7 @@ tags_raw:
 - Open Source
 - SDKs
 - CLI
+- Open-Source
 apis:
 - name: OpenComputer API
   description: >-
