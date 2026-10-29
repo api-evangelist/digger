@@ -64,6 +64,99 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Digger is a company surfaced as a portfolio company of initialized-capital and added to the API Evangelist network as a stub for enrichment. Sector: enterprise-saas. This profile is a lead awaiting the enrichment pipeline.
+Digger (diggerhq), backed by Initialized Capital, builds developer infrastructure across two open-source-rooted product lines. OpenTaco (formerly the Digger CE project) is an Infrastructure-as-Code orchestration and Terraform/OpenTofu state-management platform that runs plan/apply inside your existing CI pipeline, with PR automation, PR-level locks, drift detection and remediation, RBAC via Open Policy Agent, and FIPS 140 support; it is self-hostable via Docker Compose, Railway, and Kubernetes. OpenComputer is the company's flagship agent-infrastructure product: persistent, long-running cloud VMs for AI agents — real Linux machines that hibernate when idle and wake in seconds, with checkpoints, preview URLs, per-tenant package control, a REST API, TypeScript and Python SDKs, the oc CLI, durable agent sessions, and signed, retriable webhooks for sandbox lifecycle events.
 
-Backed by: initialized-capital — https://digger.dev/
+**Areas:** Company · AI Agents · Cloud Sandbox · Compute · Infrastructure as Code · Terraform · OpenTofu · Developer Tools · Webhook · Open Source · SDK · CLI
+
+## Digger on APIs.io
+
+Everything profiled for Digger is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/digger/](https://apis.io/providers/digger/)** — or go straight to one of the APIs or properties below.
+
+### APIs (1)
+
+- [OpenComputer API](https://apis.io/apis/digger/opencomputer-api/) — REST API for OpenComputer — create and manage persistent cloud sandbox VMs, run commands and files inside them, checkpoint/fork, expose preview URLs, run…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Digger Opencomputer Webhooks](https://apis.io/asyncapis/digger/digger-opencomputer-webhooks/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Digger Authentication](https://apis.io/security/digger/digger-authentication/)
+- [Digger Domain Security](https://apis.io/security/digger/digger-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://digger.dev/)
+- [Documentation](https://docs.opencomputer.dev/)
+- [Getting started](https://docs.opentaco.dev/onboarding/account-setup)
+- [API reference](https://docs.opencomputer.dev/api-reference/overview)
+- [Pricing](https://opencomputer.dev/#pricing)
+- [Sign up](https://app.opencomputer.dev/)
+- [Support](https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q)
+- [Blog](https://opencomputer.dev/blog)
+- [Compliance](https://docs.opentaco.dev/ce/features/fips-140)
+- [GitHub](https://github.com/diggerhq)
+
+## API Evangelist rating
+
+**Kin Score 37.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 39.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 61.9 |
+| Access clarity | 7.9 |
+
+**Agent readiness 22.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | yes |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/digger/](https://apis.io/providers/digger/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Digger: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/digger/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
